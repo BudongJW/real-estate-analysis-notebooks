@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { label: '전세가율', path: '/jeonse' },
   { label: '청약 정보', path: '/subscriptions' },
   { label: '대출 계산기', path: '/calculator' },
+  { label: '주간 리포트', path: '/report' },
 ]
 
 export function Layout({ children }: { children: React.ReactNode }) {

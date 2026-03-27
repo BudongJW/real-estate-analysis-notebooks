@@ -5,6 +5,7 @@ import { Trades } from './pages/Trades'
 import { Jeonse } from './pages/Jeonse'
 import { Subscriptions } from './pages/Subscriptions'
 import { Calculator } from './pages/Calculator'
+import { Report } from './pages/Report'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/jeonse" element={<Jeonse />} />
           <Route path="/subscriptions" element={<Subscriptions />} />
           <Route path="/calculator" element={<Calculator />} />
+          <Route path="/report" element={<Report />} />
         </Routes>
       </Layout>
     </HashRouter>

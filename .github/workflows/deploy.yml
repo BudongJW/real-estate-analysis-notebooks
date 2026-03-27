@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
   schedule:
-    # 매일 오전 9시(KST) = 00:00 UTC에 데이터 갱신 + 재배포
-    - cron: '0 0 * * *'
+    # 매주 월요일 오전 9시(KST) = 일요일 00:00 UTC
+    - cron: '0 0 * * 0'
   workflow_dispatch:
 
 permissions:
@@ -18,19 +18,16 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # 1. 공공데이터 API로 최신 데이터 수집 (API 키가 있을 때만)
+  # 1. 데이터 수집 + 주간 리포트 생성
   fetch-data:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup Python
-        if: ${{ env.DATA_GO_KR_API_KEY != '' }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-        env:
-          DATA_GO_KR_API_KEY: ${{ secrets.DATA_GO_KR_API_KEY }}
 
       - name: Fetch latest data
         if: ${{ env.DATA_GO_KR_API_KEY != '' }}
@@ -38,12 +35,21 @@ jobs:
         env:
           DATA_GO_KR_API_KEY: ${{ secrets.DATA_GO_KR_API_KEY }}
 
+      - name: Generate weekly report
+        run: python scripts/generate_report.py
+        env:
+          DATA_GO_KR_API_KEY: ${{ secrets.DATA_GO_KR_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+
       - name: Upload data artifact
         uses: actions/upload-artifact@v4
         with:
           name: market-data
-          path: public/data/
-          retention-days: 1
+          path: |
+            public/data/
+            public/reports/
+          retention-days: 7
 
   # 2. 빌드 + 배포
   build-deploy:
@@ -59,7 +65,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: market-data
-          path: public/data/
+          path: public/
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
