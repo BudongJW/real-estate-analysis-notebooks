@@ -13,6 +13,7 @@ const CustomReport = lazy(() => import('./pages/CustomReport').then(m => ({ defa
 const Pricing = lazy(() => import('./pages/Pricing').then(m => ({ default: m.Pricing })))
 const Compare = lazy(() => import('./pages/Compare').then(m => ({ default: m.Compare })))
 const RoiSimulator = lazy(() => import('./pages/RoiSimulator').then(m => ({ default: m.RoiSimulator })))
+const TaxCalculator = lazy(() => import('./pages/TaxCalculator').then(m => ({ default: m.TaxCalculator })))
 
 function Loading() {
   return <div className="flex justify-center py-20 text-gray-400">로딩 중...</div>
@@ -31,6 +32,7 @@ function App() {
             <Route path="/subscriptions" element={<Subscriptions />} />
             <Route path="/calculator" element={<Calculator />} />
             <Route path="/roi" element={<RoiSimulator />} />
+            <Route path="/tax" element={<TaxCalculator />} />
             <Route path="/report" element={<Report />} />
             <Route path="/custom-report" element={<CustomReport />} />
             <Route path="/pricing" element={<Pricing />} />
