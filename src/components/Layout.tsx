@@ -7,6 +7,8 @@ const NAV_ITEMS = [
   { label: '청약 정보', path: '/subscriptions' },
   { label: '대출 계산기', path: '/calculator' },
   { label: '주간 리포트', path: '/report' },
+  { label: '맞춤 리포트', path: '/custom-report' },
+  { label: '요금제', path: '/pricing' },
 ]
 
 export function Layout({ children }: { children: React.ReactNode }) {

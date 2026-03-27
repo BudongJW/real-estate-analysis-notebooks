@@ -5,6 +5,7 @@ import {
   LineChart, Line, Legend,
 } from 'recharts'
 import { StatCard } from '../components/StatCard'
+import { ChartDownload } from '../components/ChartDownload'
 import { formatPriceShort, formatPrice } from '../lib/format'
 
 type TradeData = {
@@ -87,8 +88,12 @@ export function Overview() {
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-gray-900">지역별 중위 매매가</h2>
-          <Link to="/trades" className="text-sm text-blue-600 hover:underline">상세 보기 →</Link>
+          <div className="flex items-center gap-2">
+            <ChartDownload chartId="chart-bar-price" filename="지역별_중위매매가" />
+            <Link to="/trades" className="text-sm text-blue-600 hover:underline">상세 보기 →</Link>
+          </div>
         </div>
+        <div id="chart-bar-price">
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={latestPrices} margin={{ top: 5, right: 20, bottom: 5, left: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -98,14 +103,19 @@ export function Overview() {
             <Bar dataKey="median" fill="#3b82f6" radius={[6, 6, 0, 0]} name="중위 매매가" />
           </BarChart>
         </ResponsiveContainer>
+        </div>
       </div>
 
       {/* Price trend line chart */}
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-gray-900">6개월 매매가 추이</h2>
-          <span className="text-xs text-gray-400">단위: 만원</span>
+          <div className="flex items-center gap-2">
+            <ChartDownload chartId="chart-trend" filename="6개월_매매가추이" />
+            <span className="text-xs text-gray-400">단위: 만원</span>
+          </div>
         </div>
+        <div id="chart-trend">
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={trendData} margin={{ top: 5, right: 20, bottom: 5, left: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -128,6 +138,7 @@ export function Overview() {
             })}
           </LineChart>
         </ResponsiveContainer>
+        </div>
       </div>
 
       {/* Jeonse ratio + Subscription preview */}
