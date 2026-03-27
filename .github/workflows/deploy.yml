@@ -1,0 +1,85 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # 매일 오전 9시(KST) = 00:00 UTC에 데이터 갱신 + 재배포
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # 1. 공공데이터 API로 최신 데이터 수집 (API 키가 있을 때만)
+  fetch-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        if: ${{ env.DATA_GO_KR_API_KEY != '' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+        env:
+          DATA_GO_KR_API_KEY: ${{ secrets.DATA_GO_KR_API_KEY }}
+
+      - name: Fetch latest data
+        if: ${{ env.DATA_GO_KR_API_KEY != '' }}
+        run: python scripts/fetch_data.py
+        env:
+          DATA_GO_KR_API_KEY: ${{ secrets.DATA_GO_KR_API_KEY }}
+
+      - name: Upload data artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: market-data
+          path: public/data/
+          retention-days: 1
+
+  # 2. 빌드 + 배포
+  build-deploy:
+    needs: fetch-data
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download data artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: market-data
+          path: public/data/
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install & Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
