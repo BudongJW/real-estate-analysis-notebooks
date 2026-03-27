@@ -141,6 +141,47 @@ export function Overview() {
         </div>
       </div>
 
+      {/* Market momentum indicators */}
+      <div className="bg-white rounded-xl border border-gray-200 p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-gray-900">시장 모멘텀 지표</h2>
+          <Link to="/invest-score" className="text-sm text-blue-600 hover:underline">투자 스코어 →</Link>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {regions.map(([name, data]) => {
+            const monthly = data.monthly
+            const first = monthly[0]
+            const last = monthly[monthly.length - 1]
+            const priceChange = ((last.median - first.median) / first.median * 100).toFixed(1)
+            const recentVol = monthly.slice(-3).reduce((s, m) => s + m.count, 0) / 3
+            const prevVol = monthly.slice(0, 3).reduce((s, m) => s + m.count, 0) / 3
+            const volChange = ((recentVol - prevVol) / prevVol * 100).toFixed(1)
+            const isHot = Number(priceChange) > 5 && Number(volChange) > 10
+            const isCool = Number(priceChange) < 0
+
+            return (
+              <div key={name} className={`rounded-lg border p-3 ${isHot ? 'border-red-200 bg-red-50' : isCool ? 'border-blue-200 bg-blue-50' : 'border-gray-100 bg-gray-50'}`}>
+                <p className="text-xs text-gray-500 mb-1">{name.replace('서울 ', '').replace('경기 ', '')}</p>
+                <div className="flex items-baseline gap-1.5">
+                  <span className={`text-lg font-bold ${Number(priceChange) >= 0 ? 'text-red-600' : 'text-blue-600'}`}>
+                    {Number(priceChange) >= 0 ? '+' : ''}{priceChange}%
+                  </span>
+                  <span className="text-[10px] text-gray-400">6개월</span>
+                </div>
+                <div className="flex items-center gap-1 mt-1">
+                  <span className="text-[10px] text-gray-500">거래량</span>
+                  <span className={`text-[10px] font-medium ${Number(volChange) >= 0 ? 'text-red-500' : 'text-blue-500'}`}>
+                    {Number(volChange) >= 0 ? '▲' : '▼'}{Math.abs(Number(volChange))}%
+                  </span>
+                </div>
+                {isHot && <span className="inline-block mt-1 px-1.5 py-0.5 bg-red-100 text-red-600 text-[9px] font-medium rounded">과열 주의</span>}
+                {isCool && <span className="inline-block mt-1 px-1.5 py-0.5 bg-blue-100 text-blue-600 text-[9px] font-medium rounded">조정 구간</span>}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
       {/* Jeonse ratio + Subscription preview */}
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-white rounded-xl border border-gray-200 p-6">

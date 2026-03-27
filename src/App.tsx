@@ -14,6 +14,7 @@ const Pricing = lazy(() => import('./pages/Pricing').then(m => ({ default: m.Pri
 const Compare = lazy(() => import('./pages/Compare').then(m => ({ default: m.Compare })))
 const RoiSimulator = lazy(() => import('./pages/RoiSimulator').then(m => ({ default: m.RoiSimulator })))
 const TaxCalculator = lazy(() => import('./pages/TaxCalculator').then(m => ({ default: m.TaxCalculator })))
+const InvestScore = lazy(() => import('./pages/InvestScore').then(m => ({ default: m.InvestScore })))
 
 function Loading() {
   return <div className="flex justify-center py-20 text-gray-400">로딩 중...</div>
@@ -33,6 +34,7 @@ function App() {
             <Route path="/calculator" element={<Calculator />} />
             <Route path="/roi" element={<RoiSimulator />} />
             <Route path="/tax" element={<TaxCalculator />} />
+            <Route path="/invest-score" element={<InvestScore />} />
             <Route path="/report" element={<Report />} />
             <Route path="/custom-report" element={<CustomReport />} />
             <Route path="/pricing" element={<Pricing />} />
