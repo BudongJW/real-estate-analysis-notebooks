@@ -1,0 +1,55 @@
+{
+  "updated": "2026-03",
+  "items": [
+    {
+      "name": "래미안 원펜타스",
+      "location": "서울 서초구 반포동",
+      "totalUnits": 641,
+      "announcementDate": "2026-03-10",
+      "applicationStart": "2026-03-25",
+      "applicationEnd": "2026-03-28",
+      "winnerDate": "2026-04-05",
+      "competitionRate": 245.3
+    },
+    {
+      "name": "디에이치 퍼스티어아이파크",
+      "location": "서울 강동구 둔촌동",
+      "totalUnits": 1230,
+      "announcementDate": "2026-03-05",
+      "applicationStart": "2026-03-18",
+      "applicationEnd": "2026-03-21",
+      "winnerDate": "2026-03-30",
+      "competitionRate": 189.7
+    },
+    {
+      "name": "힐스테이트 광교중앙역퍼스트",
+      "location": "경기 수원시 영통구",
+      "totalUnits": 854,
+      "announcementDate": "2026-02-28",
+      "applicationStart": "2026-03-12",
+      "applicationEnd": "2026-03-15",
+      "winnerDate": "2026-03-25",
+      "competitionRate": 78.4
+    },
+    {
+      "name": "e편한세상 위례포레스트",
+      "location": "경기 성남시 수정구",
+      "totalUnits": 1456,
+      "announcementDate": "2026-02-20",
+      "applicationStart": "2026-03-05",
+      "applicationEnd": "2026-03-08",
+      "winnerDate": "2026-03-18",
+      "competitionRate": 132.1
+    },
+    {
+      "name": "브라이튼 여의도",
+      "location": "서울 영등포구 여의도동",
+      "totalUnits": 340,
+      "announcementDate": "2026-03-15",
+      "applicationStart": "2026-04-01",
+      "applicationEnd": "2026-04-04",
+      "winnerDate": "2026-04-12",
+      "competitionRate": null
+    }
+  ]
+}
