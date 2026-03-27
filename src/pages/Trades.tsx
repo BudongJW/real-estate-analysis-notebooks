@@ -134,6 +134,7 @@ export function Trades() {
                 <th className="text-right py-3 px-2 text-gray-500 font-medium">면적(㎡)</th>
                 <th className="text-right py-3 px-2 text-gray-500 font-medium">층</th>
                 <th className="text-right py-3 px-2 text-gray-500 font-medium">거래가</th>
+                <th className="text-right py-3 px-2 text-gray-500 font-medium">평당가</th>
                 <th className="text-right py-3 px-2 text-gray-500 font-medium">거래일</th>
                 <th className="text-right py-3 px-2 text-gray-500 font-medium">건축년도</th>
               </tr>
@@ -146,6 +147,7 @@ export function Trades() {
                   <td className="py-3 px-2 text-right text-gray-600">{t.area}</td>
                   <td className="py-3 px-2 text-right text-gray-600">{t.floor}층</td>
                   <td className="py-3 px-2 text-right font-semibold text-blue-700">{formatPrice(t.price)}원</td>
+                  <td className="py-3 px-2 text-right text-gray-500">{formatPrice(Math.round(t.price / (t.area / 3.3058)))}원</td>
                   <td className="py-3 px-2 text-right text-gray-500">{formatDate(t.date)}</td>
                   <td className="py-3 px-2 text-right text-gray-500">{t.year}</td>
                 </tr>
