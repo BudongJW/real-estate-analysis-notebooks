@@ -23,3 +23,8 @@ export function useTheme() {
 
   return { theme, toggle }
 }
+
+/** Check if dark mode is active (for non-hook contexts like chart configs) */
+export function isDark(): boolean {
+  return document.documentElement.classList.contains('dark')
+}
