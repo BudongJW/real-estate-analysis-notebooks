@@ -8,41 +8,182 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Dark mode base styles for cards and common patterns */
-.dark .bg-white {
-  background-color: #1f2937 !important;
-}
-.dark .border-gray-200 {
-  border-color: #374151 !important;
-}
-.dark .border-gray-100 {
-  border-color: #374151 !important;
-}
-.dark .text-gray-900 {
-  color: #f3f4f6 !important;
-}
-.dark .text-gray-700 {
-  color: #d1d5db !important;
-}
-.dark .text-gray-600 {
-  color: #9ca3af !important;
-}
-.dark .text-gray-500 {
-  color: #9ca3af !important;
-}
-.dark .bg-gray-50 {
-  background-color: #111827 !important;
-}
-.dark .bg-gray-100 {
-  background-color: #1f2937 !important;
+/* ========================================
+   Dark mode base overrides
+   ======================================== */
+
+/* Backgrounds */
+.dark .bg-white { background-color: #1f2937 !important; }
+.dark .bg-gray-50 { background-color: #111827 !important; }
+.dark .bg-gray-100 { background-color: #1f2937 !important; }
+
+/* Colored light backgrounds → dark equivalents */
+.dark .bg-blue-50 { background-color: rgba(30, 58, 138, 0.25) !important; }
+.dark .bg-blue-100 { background-color: rgba(30, 58, 138, 0.35) !important; }
+.dark .bg-red-50 { background-color: rgba(127, 29, 29, 0.25) !important; }
+.dark .bg-red-100 { background-color: rgba(127, 29, 29, 0.35) !important; }
+.dark .bg-green-50 { background-color: rgba(20, 83, 45, 0.25) !important; }
+.dark .bg-green-100 { background-color: rgba(20, 83, 45, 0.35) !important; }
+.dark .bg-orange-50 { background-color: rgba(124, 45, 18, 0.25) !important; }
+.dark .bg-orange-100 { background-color: rgba(124, 45, 18, 0.35) !important; }
+.dark .bg-amber-50 { background-color: rgba(120, 53, 15, 0.25) !important; }
+.dark .bg-amber-100 { background-color: rgba(120, 53, 15, 0.35) !important; }
+.dark .bg-emerald-50 { background-color: rgba(6, 78, 59, 0.25) !important; }
+.dark .bg-purple-50 { background-color: rgba(76, 29, 149, 0.25) !important; }
+
+/* Borders */
+.dark .border-gray-200 { border-color: #374151 !important; }
+.dark .border-gray-100 { border-color: #374151 !important; }
+.dark .border-gray-50 { border-color: #374151 !important; }
+.dark .border-blue-200 { border-color: #1e3a5f !important; }
+.dark .border-blue-300 { border-color: #1e40af !important; }
+.dark .border-red-200 { border-color: #7f1d1d80 !important; }
+.dark .border-green-200 { border-color: #14532d80 !important; }
+.dark .border-orange-200 { border-color: #7c2d1280 !important; }
+.dark .border-amber-200 { border-color: #78350f80 !important; }
+.dark .border-emerald-200 { border-color: #064e3b80 !important; }
+
+/* Text — base grays */
+.dark .text-gray-900 { color: #f3f4f6 !important; }
+.dark .text-gray-800 { color: #e5e7eb !important; }
+.dark .text-gray-700 { color: #d1d5db !important; }
+.dark .text-gray-600 { color: #9ca3af !important; }
+.dark .text-gray-500 { color: #9ca3af !important; }
+.dark .text-gray-400 { color: #6b7280 !important; }
+
+/* Text — colored dark texts that become unreadable */
+.dark .text-blue-900 { color: #93c5fd !important; }
+.dark .text-blue-800 { color: #93c5fd !important; }
+.dark .text-blue-700 { color: #60a5fa !important; }
+.dark .text-blue-600 { color: #60a5fa !important; }
+.dark .text-red-900 { color: #fca5a5 !important; }
+.dark .text-red-700 { color: #f87171 !important; }
+.dark .text-red-600 { color: #f87171 !important; }
+.dark .text-green-900 { color: #86efac !important; }
+.dark .text-green-700 { color: #4ade80 !important; }
+.dark .text-green-600 { color: #4ade80 !important; }
+.dark .text-orange-900 { color: #fdba74 !important; }
+.dark .text-orange-600 { color: #fb923c !important; }
+.dark .text-orange-500 { color: #fb923c !important; }
+.dark .text-amber-800 { color: #fcd34d !important; }
+.dark .text-amber-700 { color: #fbbf24 !important; }
+.dark .text-amber-500 { color: #f59e0b !important; }
+.dark .text-emerald-600 { color: #34d399 !important; }
+
+/* Hover states */
+.dark .hover\:bg-gray-50:hover { background-color: #374151 !important; }
+.dark .hover\:bg-gray-100:hover { background-color: #374151 !important; }
+.dark .hover\:bg-blue-50:hover { background-color: rgba(30, 58, 138, 0.3) !important; }
+
+/* Active states (mobile tap) */
+.dark .active\:bg-gray-100:active { background-color: #374151 !important; }
+
+/* Recharts chart grids — override hardcoded light strokes */
+.dark .recharts-cartesian-grid line,
+.dark .recharts-cartesian-grid-horizontal line,
+.dark .recharts-cartesian-grid-vertical line {
+  stroke: #374151 !important;
 }
 
-/* Mobile bottom nav safe area */
+/* Recharts polar grid */
+.dark .recharts-polar-grid line,
+.dark .recharts-polar-grid-angle line,
+.dark .recharts-polar-grid-concentric path {
+  stroke: #374151 !important;
+}
+
+/* Recharts axis text */
+.dark .recharts-cartesian-axis-tick text,
+.dark .recharts-polar-angle-axis text,
+.dark .recharts-polar-radius-axis text {
+  fill: #9ca3af !important;
+}
+
+/* Recharts tooltip */
+.dark .recharts-tooltip-wrapper .recharts-default-tooltip {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+  color: #f3f4f6 !important;
+}
+.dark .recharts-tooltip-item {
+  color: #d1d5db !important;
+}
+.dark .recharts-tooltip-label {
+  color: #f3f4f6 !important;
+}
+
+/* Recharts legend text */
+.dark .recharts-legend-item-text {
+  color: #d1d5db !important;
+}
+
+/* Recharts area fills — make lighter fills visible on dark bg */
+.dark .recharts-area .recharts-area-area {
+  opacity: 0.3 !important;
+}
+
+/* Recharts bar fills — slightly boost opacity in dark mode */
+.dark .recharts-bar .recharts-bar-rectangle {
+  opacity: 0.85 !important;
+}
+
+/* Recharts pie labels */
+.dark .recharts-pie-label-text {
+  fill: #d1d5db !important;
+}
+
+/* Form elements */
+.dark select {
+  background-color: #1f2937 !important;
+  color: #f3f4f6 !important;
+  border-color: #374151 !important;
+}
+.dark input[type="text"],
+.dark input[type="number"] {
+  background-color: #1f2937 !important;
+  color: #f3f4f6 !important;
+  border-color: #374151 !important;
+}
+.dark input::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Code blocks in markdown */
+.dark code {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+/* Table rows */
+.dark tr.hover\:bg-gray-50:hover,
+.dark .hover\:bg-gray-50:hover {
+  background-color: #374151 !important;
+}
+.dark .border-b.border-gray-50 {
+  border-color: #1f2937 !important;
+}
+
+/* Gradient overrides for dark mode */
+.dark .bg-gradient-to-r.from-blue-600 {
+  background: linear-gradient(to right, #1e40af, #1e3a8a) !important;
+}
+.dark .bg-gradient-to-br.from-gray-900 {
+  background: linear-gradient(to bottom right, #030712, #111827) !important;
+}
+
+/* Shadow adjustments */
+.dark .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4) !important; }
+.dark .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3) !important; }
+.dark .shadow-blue-100\/50 { box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.2) !important; }
+
+/* ========================================
+   Mobile UX
+   ======================================== */
+
 .safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* Hide scrollbar but keep scrollable */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -51,7 +192,6 @@ body {
   display: none;
 }
 
-/* Touch-friendly: larger tap targets on mobile */
 @media (max-width: 768px) {
   input[type="range"] {
     height: 2rem;
@@ -63,7 +203,6 @@ body {
   button {
     min-height: 2.5rem;
   }
-  /* Better table readability on mobile */
   table {
     font-size: 0.8125rem;
   }

@@ -113,7 +113,7 @@ export function Report() {
 
           {/* Overlay for free users */}
           {!pro && (
-            <div className="absolute inset-0 flex items-center justify-center bg-white/60 rounded-xl">
+            <div className="absolute inset-0 flex items-center justify-center bg-white/60 dark:bg-gray-900/70 rounded-xl">
               <div className="text-center px-6">
                 <p className="text-4xl mb-3">🔒</p>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">프리미엄 인사이트</h3>
