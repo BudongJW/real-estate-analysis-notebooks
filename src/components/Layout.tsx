@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { label: '대출', short: '대출', icon: '🏦', path: '/calculator' },
   { label: '투자 시뮬', short: '투자', icon: '📈', path: '/roi' },
   { label: '세금', short: '세금', icon: '🧾', path: '/tax' },
+  { label: '투자 스코어', short: '스코어', icon: '🎯', path: '/invest-score' },
   { label: '리포트', short: '리포트', icon: '📄', path: '/report' },
   { label: '맞춤 리포트', short: '맞춤', icon: '✨', path: '/custom-report' },
   { label: '요금제', short: '요금', icon: '💎', path: '/pricing' },
