@@ -6,6 +6,8 @@ import { Jeonse } from './pages/Jeonse'
 import { Subscriptions } from './pages/Subscriptions'
 import { Calculator } from './pages/Calculator'
 import { Report } from './pages/Report'
+import { Pricing } from './pages/Pricing'
+import { CustomReport } from './pages/CustomReport'
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/subscriptions" element={<Subscriptions />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/report" element={<Report />} />
+          <Route path="/custom-report" element={<CustomReport />} />
+          <Route path="/pricing" element={<Pricing />} />
         </Routes>
       </Layout>
     </HashRouter>
